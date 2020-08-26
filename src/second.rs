@@ -47,14 +47,14 @@ mod test {
 
     #[test]
     fn new_list_empty() {
-        let mut bbs_list: List = List::new();
+        let mut bbs_list: List<String> = List::new();
 
         assert_eq!(bbs_list.pop(), None)
     }
 
     #[test]
     fn pop() {
-        let mut bbs_list: List = List::new();
+        let mut bbs_list: List<i32> = List::new();
 
         bbs_list.push(9001);
         bbs_list.push(12);
@@ -66,7 +66,7 @@ mod test {
 
     #[test]
     fn push() {
-        let mut bbs_list: List = List::new();
+        let mut bbs_list: List<i32> = List::new();
 
         bbs_list.push(9001);
         bbs_list.push(12);
@@ -74,6 +74,19 @@ mod test {
 
         assert_eq!(bbs_list.pop(), Some(42));
         assert_eq!(bbs_list.pop(), Some(12))
+    }
+
+    #[test]
+    fn drop() {
+
+        let mut bbs_list: List<i32> = List::new();
+
+        bbs_list.push(9001);
+        bbs_list.push(12);
+        bbs_list.push(42);
+
+        std::mem::drop(bbs_list);
+
     }
 
 
